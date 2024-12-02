@@ -11,6 +11,10 @@ public class PlayerController : MonoBehaviour
     private bool isGrounded = true; // Check if the player is on the ground
     private Rigidbody2D rb; // Reference to the player's Rigidbody2D
 
+    // AudioSource to play and stop sound
+    public AudioSource gravitySound; // Reference to the AudioSource component for the gravity sound
+    public AudioSource jumpSound; // Reference to the AudioSource component for the jump sound
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>(); // Get the Rigidbody2D component
@@ -23,6 +27,9 @@ public class PlayerController : MonoBehaviour
         {
             rb.velocity = new Vector2(rb.velocity.x, jumpForce); // Apply jump force upward
             isGrounded = false; // The player is no longer grounded after jumping
+
+            // Play jump sound when the player jumps
+            jumpSound.Play(); // Play the jump sound
         }
 
         // Gravity switch behavior
@@ -31,6 +38,7 @@ public class PlayerController : MonoBehaviour
             isGravitySwitched = true;
             gravitySwitchTime = Time.time;
             rb.gravityScale = -rb.gravityScale; // Flip gravity direction
+            gravitySound.Play(); // Play the sound when gravity is switched
         }
 
         // Reset gravity after duration
@@ -38,6 +46,7 @@ public class PlayerController : MonoBehaviour
         {
             isGravitySwitched = false;
             rb.gravityScale = -rb.gravityScale; // Reset gravity direction
+            gravitySound.Stop(); // Stop the sound when gravity switch ends
         }
 
         // Rotate left (Q) and right (E)
