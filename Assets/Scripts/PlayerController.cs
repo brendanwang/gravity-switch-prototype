@@ -4,7 +4,7 @@ public class PlayerController : MonoBehaviour
 {
     public float jumpForce = 10f; // The force applied when jumping
     public float gravitySwitchDuration = 1f; // Duration for gravity switch
-    public float rotationSpeed = 100f; // Speed at which the player rotates
+    public float rotationSpeed = 200f; // Speed at which the player rotates
     public float moveSpeed = 5f; // Speed at which the player moves left and right
     private bool isGravitySwitched = false; // Flag for gravity switch state
     private float gravitySwitchTime = 0f; // Time when gravity switch was activated
@@ -49,12 +49,12 @@ public class PlayerController : MonoBehaviour
             gravitySound.Stop(); // Stop the sound when gravity switch ends
         }
 
-        // Rotate left (Q) and right (E)
-        if (Input.GetKey(KeyCode.Q))
+        // Rotate left (Q) and right (E) OR Left Arrow and Right Arrow
+        if (Input.GetKey(KeyCode.Q) || Input.GetKey(KeyCode.LeftArrow))
         {
             transform.Rotate(0, 0, rotationSpeed * Time.deltaTime); // Rotate counter-clockwise
         }
-        if (Input.GetKey(KeyCode.E))
+        if (Input.GetKey(KeyCode.E) || Input.GetKey(KeyCode.RightArrow))
         {
             transform.Rotate(0, 0, -rotationSpeed * Time.deltaTime); // Rotate clockwise
         }

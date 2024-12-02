@@ -285,12 +285,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45f303fb4c7c76b478b22c8fd3495403, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jumpForce: 8.5
+  jumpForce: 10
   gravitySwitchDuration: 4
-  rotationSpeed: 100
+  rotationSpeed: 200
   moveSpeed: 5
   gravitySound: {fileID: 1363793074}
-  jumpSound: {fileID: 0}
+  jumpSound: {fileID: 411532688}
 --- !u!61 &349132227
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -351,7 +351,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 1.5
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -424,9 +424,9 @@ Transform:
   m_GameObject: {fileID: 349132225}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.85, y: -2.9, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalPosition: {x: 0, y: -3.77, z: 0}
+  m_LocalScale: {x: 0.67, y: 0.5856296, z: 0.5856296}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -872,8 +872,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62e8dfcd312a04a45ab863017c5762ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  obstaclePrefab: {fileID: 3917505446729798479, guid: ad5d6f693ccf82345adf7af8e663547c, type: 3}
-  spawnRate: 2
+  obstaclePrefab: {fileID: 5486042272433485764, guid: 9009910b5692f284b829253176c1f5b1, type: 3}
+  spawnRate: 1
 --- !u!4 &897134387
 Transform:
   m_ObjectHideFlags: 0
