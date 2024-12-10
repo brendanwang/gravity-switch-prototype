@@ -1,6 +1,7 @@
 using UnityEngine;
 using TMPro; // Add this for TextMeshPro support
 using UnityEngine.SceneManagement; // For reloading the scene (to restart the game)
+using System.Collections;
 
 public class PlayerController : MonoBehaviour
 {
@@ -21,14 +22,21 @@ public class PlayerController : MonoBehaviour
     public GameObject gameOverUI; // Reference to the Game Over UI panel
     public TextMeshProUGUI timerText; // Reference to the TextMeshProUGUI element for the timer
     public TextMeshProUGUI gameOverTimeText; // Reference to the TextMeshProUGUI for displaying time on Game Over screen
+    public TextMeshProUGUI startText; // Reference to the TextMeshProUGUI for showing the start text
 
     private float timer = 0f; // Store the elapsed time
     private float gameOverTime = 0f; // Store the time when the player hit an obstacle
 
+    private SpriteRenderer spriteRenderer; // Reference to the player's SpriteRenderer
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>(); // Get the Rigidbody2D component
+        spriteRenderer = GetComponent<SpriteRenderer>(); // Get the SpriteRenderer component
         gameOverUI.SetActive(false); // Hide the game over UI at the start
+
+        // Start the coroutine to display the text for a given time
+        StartCoroutine(DisplayStartText());
     }
 
     void Update()
@@ -64,6 +72,9 @@ public class PlayerController : MonoBehaviour
             gravitySwitchTime = Time.time;
             rb.gravityScale = -rb.gravityScale; // Flip gravity direction
             gravitySound.Play(); // Play the sound when gravity is switched
+
+            // Flip the sprite upside down
+            spriteRenderer.flipY = true;
         }
 
         // Reset gravity after duration
@@ -72,6 +83,9 @@ public class PlayerController : MonoBehaviour
             isGravitySwitched = false;
             rb.gravityScale = -rb.gravityScale; // Reset gravity direction
             gravitySound.Stop(); // Stop the sound when gravity switch ends
+
+            // Flip the sprite back to its original position
+            spriteRenderer.flipY = false;
         }
 
         // Rotate left (Q) and right (E) OR Left Arrow and Right Arrow
@@ -104,6 +118,14 @@ public class PlayerController : MonoBehaviour
         {
             rb.velocity = new Vector2(rb.velocity.x, -jumpForce); // Apply a "downward" jump force
         }
+    }
+
+    // Coroutine to display start text for a given time
+    private IEnumerator DisplayStartText()
+    {
+        startText.gameObject.SetActive(true); // Make the start text visible
+        yield return new WaitForSeconds(5f); // Wait for 5 seconds
+        startText.gameObject.SetActive(false); // Hide the start text after 5 seconds
     }
 
     // Detect ground collision to reset jump
