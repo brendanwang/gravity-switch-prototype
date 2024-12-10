@@ -27,6 +27,12 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+        // If the game is paused, listen for Spacebar to restart
+        if (Time.timeScale == 0f && Input.GetKeyDown(KeyCode.Space))
+        {
+            RestartGame(); // Restart the game when Spacebar is pressed
+        }
+
         // Jumping behavior when gravity is not switched
         if (isGrounded && Input.GetKeyDown(KeyCode.Space) && !isGravitySwitched)
         {
@@ -108,7 +114,7 @@ public class PlayerController : MonoBehaviour
         Time.timeScale = 0f; // Pause the game (freeze all movement)
     }
 
-    // Restart the game (this can be called via a button in the Game Over UI)
+    // Restart the game (this can be called via a button in the Game Over UI or Spacebar)
     public void RestartGame()
     {
         Time.timeScale = 1f; // Unpause the game
