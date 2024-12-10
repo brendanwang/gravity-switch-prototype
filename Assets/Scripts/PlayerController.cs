@@ -1,4 +1,5 @@
 using UnityEngine;
+using TMPro; // Add this for TextMeshPro support
 using UnityEngine.SceneManagement; // For reloading the scene (to restart the game)
 
 public class PlayerController : MonoBehaviour
@@ -19,6 +20,11 @@ public class PlayerController : MonoBehaviour
     // Game Over UI elements
     public GameObject gameOverUI; // Reference to the Game Over UI panel
 
+    // Timer UI
+    public TextMeshProUGUI timerText; // Reference to the TextMeshProUGUI element for the timer
+
+    private float timer = 0f; // Store the elapsed time
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>(); // Get the Rigidbody2D component
@@ -31,6 +37,14 @@ public class PlayerController : MonoBehaviour
         if (Time.timeScale == 0f && Input.GetKeyDown(KeyCode.Space))
         {
             RestartGame(); // Restart the game when Spacebar is pressed
+        }
+
+        // Update the timer only when the game is not paused
+        if (Time.timeScale != 0f)
+        {
+            timer += Time.deltaTime; // Increment the timer
+            int seconds = Mathf.FloorToInt(timer); // Convert the timer to whole seconds
+            timerText.text = "Score: " + seconds.ToString(); // Update the timer text on the UI
         }
 
         // Jumping behavior when gravity is not switched

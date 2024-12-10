@@ -292,6 +292,7 @@ MonoBehaviour:
   gravitySound: {fileID: 1363793074}
   jumpSound: {fileID: 411532688}
   gameOverUI: {fileID: 640156315}
+  timerText: {fileID: 1891947800}
 --- !u!61 &349132227
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1845,7 +1846,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 37.43, y: 186.28}
+  m_AnchoredPosition: {x: 40.9, y: 186.28}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1891947800
@@ -1868,7 +1869,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Time: 0.0'
+  m_text: 'Score: 0'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
