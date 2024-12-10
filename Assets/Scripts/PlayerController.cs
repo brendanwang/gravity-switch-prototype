@@ -19,11 +19,11 @@ public class PlayerController : MonoBehaviour
 
     // Game Over UI elements
     public GameObject gameOverUI; // Reference to the Game Over UI panel
-
-    // Timer UI
     public TextMeshProUGUI timerText; // Reference to the TextMeshProUGUI element for the timer
+    public TextMeshProUGUI gameOverTimeText; // Reference to the TextMeshProUGUI for displaying time on Game Over screen
 
     private float timer = 0f; // Store the elapsed time
+    private float gameOverTime = 0f; // Store the time when the player hit an obstacle
 
     void Start()
     {
@@ -117,6 +117,7 @@ public class PlayerController : MonoBehaviour
         // Detect collision with obstacles and trigger game over
         if (collision.gameObject.CompareTag("Obstacle"))
         {
+            gameOverTime = Mathf.FloorToInt(timer); // Capture the time when the player hit the obstacle
             GameOver(); // Call the Game Over function when the player hits an obstacle
         }
     }
@@ -125,6 +126,7 @@ public class PlayerController : MonoBehaviour
     void GameOver()
     {
         gameOverUI.SetActive(true); // Show the Game Over UI
+        gameOverTimeText.text = "Your Score: " + gameOverTime.ToString(); // Display the time on the Game Over screen
         Time.timeScale = 0f; // Pause the game (freeze all movement)
     }
 
