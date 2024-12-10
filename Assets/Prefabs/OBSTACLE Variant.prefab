@@ -12,6 +12,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: OBSTACLE Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 3917505446729798479, guid: ad5d6f693ccf82345adf7af8e663547c, type: 3}
+      propertyPath: m_TagString
+      value: Obstacle
+      objectReference: {fileID: 0}
     - target: {fileID: 4795460064945188912, guid: ad5d6f693ccf82345adf7af8e663547c, type: 3}
       propertyPath: m_Sprite
       value: 

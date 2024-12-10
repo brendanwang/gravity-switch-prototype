@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement; // For reloading the scene (to restart the game)
 
 public class PlayerController : MonoBehaviour
 {
@@ -15,9 +16,13 @@ public class PlayerController : MonoBehaviour
     public AudioSource gravitySound; // Reference to the AudioSource component for the gravity sound
     public AudioSource jumpSound; // Reference to the AudioSource component for the jump sound
 
+    // Game Over UI elements
+    public GameObject gameOverUI; // Reference to the Game Over UI panel
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>(); // Get the Rigidbody2D component
+        gameOverUI.SetActive(false); // Hide the game over UI at the start
     }
 
     void Update()
@@ -88,5 +93,25 @@ public class PlayerController : MonoBehaviour
         {
             isGrounded = true; // The player is back on the ground
         }
+
+        // Detect collision with obstacles and trigger game over
+        if (collision.gameObject.CompareTag("Obstacle"))
+        {
+            GameOver(); // Call the Game Over function when the player hits an obstacle
+        }
+    }
+
+    // Game Over Logic
+    void GameOver()
+    {
+        gameOverUI.SetActive(true); // Show the Game Over UI
+        Time.timeScale = 0f; // Pause the game (freeze all movement)
+    }
+
+    // Restart the game (this can be called via a button in the Game Over UI)
+    public void RestartGame()
+    {
+        Time.timeScale = 1f; // Unpause the game
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name); // Reload the current scene
     }
 }
